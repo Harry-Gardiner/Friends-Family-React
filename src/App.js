@@ -10,10 +10,12 @@ function App() {
     <Router>
       <>
         <Navbar />
-        <Switch>
-          <Route path="/" exact component={Contacts} />
-          <Route path="/addContacts" exact component={AddContacts} />
-        </Switch>
+        <div className="container ml-5 mr-5">
+          <Switch>
+            <Route path="/" exact component={Contacts} />
+            <Route path="/addContacts" exact component={AddContacts} />
+          </Switch>
+        </div>
       </>
     </Router>
   );
