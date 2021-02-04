@@ -19,8 +19,13 @@ const AddContacts = () => {
         });
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-group mt-5">
                 <label htmlFor="full name">Full Name:</label>
                 <input
