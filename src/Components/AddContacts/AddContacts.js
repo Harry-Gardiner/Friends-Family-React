@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from '../../data/axios-config';
 
 const AddContacts = () => {
     // local state
@@ -21,8 +22,16 @@ const AddContacts = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post("/contact", state);
 
-    }
+        // reset
+        setState({
+            name: "",
+            email: "",
+            phone: "",
+            dob: "",
+        });
+    };
 
     return (
         <form onSubmit={handleSubmit}>
