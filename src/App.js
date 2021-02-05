@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Contacts from './Components/Contacts/Contacts';
 import AddContacts from './Components/AddContacts/AddContacts';
+import FourOhFour from './Components/FourOhFour/FourOhFour';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Contacts} />
             <Route path="/addContacts" exact component={AddContacts} />
+            {/* <FourOhFour /> */}
           </Switch>
         </div>
       </>
