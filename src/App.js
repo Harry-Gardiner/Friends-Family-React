@@ -15,7 +15,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Contacts} />
             <Route path="/addContacts" exact component={AddContacts} />
-            {/* <FourOhFour /> */}
+            <FourOhFour />
           </Switch>
         </div>
       </>
