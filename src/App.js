@@ -1,14 +1,15 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Contacts from './Components/Contacts/Contacts';
 import AddContacts from './Components/AddContacts/AddContacts';
 import FourOhFour from './Components/FourOhFour/FourOhFour';
+import history from './history';
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <>
         <Navbar />
         <div className="container ml-5 mr-5">

@@ -1,7 +1,7 @@
 const FourOhFour = () => {
     return (
-        <div className="h-100 row">
-            <div className="col">
+        <div className="container h-100 row">
+            <div className="col text-danger">
                 Page Not Found... return to home page
              </div>
         </div>
