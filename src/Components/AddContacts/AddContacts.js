@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from '../../data/axios-config';
 import history from '../../history';
+import ErrorMsg from '../Error/Error';
 
 const AddContacts = () => {
     // local state
@@ -11,6 +12,7 @@ const AddContacts = () => {
         dob: "",
     });
 
+    const [error, setError] = useState(false);
 
     // Events
     const handleChange = (e) => {
@@ -23,21 +25,27 @@ const AddContacts = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("/contact", state);
+        axios.post("/contact", state).then(() => {
+            // reset
+            setState({
+                name: "",
+                email: "",
+                phone: "",
+                dob: "",
+            });
 
-        // reset
-        setState({
-            name: "",
-            email: "",
-            phone: "",
-            dob: "",
+            // return to home page if successful
+            history.push("/");
+        }, error => {
+            console.log(error); // logs an error message
+            console.log(error.response); // the response object
+            setError(true);
         });
-
-        history.push("/");
     };
 
     return (
         <form onSubmit={handleSubmit}>
+            {!error ? null : <ErrorMsg />}
             <div className="form-group mt-5">
                 <label htmlFor="full name">Full Name:</label>
                 <input
