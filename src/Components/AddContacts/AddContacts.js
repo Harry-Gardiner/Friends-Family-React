@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../../data/axios-config';
+import history from '../../history';
 
 const AddContacts = () => {
     // local state
@@ -31,6 +32,8 @@ const AddContacts = () => {
             phone: "",
             dob: "",
         });
+
+        history.push("/");
     };
 
     return (
