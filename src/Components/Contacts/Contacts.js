@@ -4,18 +4,32 @@ import axios from '../../data/axios-config';
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
     const [loaded, setLoaded] = useState(false)
+
+    // functions
+    const sortAlpabetically = (a, b) => {
+        if (a.full_name < b.full_name) {
+            return -1;
+        }
+        if (a.full_name > b.full_name) {
+            return 1;
+        }
+        return 0;
+    }
+
+    // on render
     useEffect(() => {
         if (!loaded) {
             axios.get("contact").then(({ data }) => {
                 setContacts(data);
                 setLoaded(true);
-                console.log(contacts);
             });
         } else {
             return null
         }
-
     }, [loaded, contacts]);
+
+
+    contacts.sort(sortAlpabetically);
 
     return (
         <div>
