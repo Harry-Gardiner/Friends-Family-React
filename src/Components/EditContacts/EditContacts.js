@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../../data/axios-config';
 import history from '../../history';
 import ErrorMsg from '../Error/Error';
 
-const AddContacts = () => {
+const EditContacts = (props) => {
     // local state
     const [state, setState] = useState({
         name: "",
@@ -13,6 +13,21 @@ const AddContacts = () => {
     });
 
     const [error, setError] = useState(false);
+
+    // Props
+    const id = props.match.params.id;
+
+    // on render
+    useEffect(() => {
+        axios.get(`/contact/${id}/edit`).then(({ data }) => {
+            setState({
+                name: data.full_name,
+                email: data.email,
+                phone: data.phone,
+                dob: data.date_of_birth,
+            });
+        });
+    }, [id]);
 
     // Events
     const handleChange = (e) => {
@@ -25,15 +40,7 @@ const AddContacts = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        axios.post("/contact", state).then(() => {
-            // reset
-            setState({
-                name: "",
-                email: "",
-                phone: "",
-                dob: "",
-            });
-
+        axios.patch(`/contact/${id}`, state).then(() => {
             // return to home page if successful
             history.push("/");
         }, error => {
@@ -94,9 +101,9 @@ const AddContacts = () => {
                     value={state.dob}
                 />
             </div>
-            <button className="btn btn-primary" type="submit">Submit form</button>
+            <button className="btn btn-primary" type="submit">Edit Contact</button>
         </form>
     );
 };
 
-export default AddContacts
+export default EditContacts;

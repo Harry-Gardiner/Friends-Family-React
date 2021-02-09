@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../data/axios-config';
+import { Link } from 'react-router-dom';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -37,8 +38,6 @@ const Contacts = () => {
 
     contacts.sort(sortAlpabetically);
 
-
-
     return (
         <div>
             <div>
@@ -54,7 +53,7 @@ const Contacts = () => {
                                 <div className="col-md-2">{contact.phone}</div>
                                 <div className="col-md-2">{setUkDate(contact.date_of_birth)}</div>
                                 <div className="col-md-1">
-                                    <button className="btn btn-warning">Edit</button>
+                                    <Link className="btn btn-warning" to={`/edit/${contact.id}`}>Edit</Link>
                                 </div>
                                 <div className="col-md-1">
                                     <button className="btn btn-danger">Delete</button>
