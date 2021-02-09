@@ -12,7 +12,7 @@ function App() {
     <Router history={history}>
       <>
         <Navbar />
-        <div className="container ml-5 mr-5">
+        <div className="container">
           <Switch>
             <Route path="/" exact component={Contacts} />
             <Route path="/addContacts" exact component={AddContacts} />
