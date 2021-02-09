@@ -23,6 +23,8 @@ const Contacts = () => {
         return newDate;
     }
 
+
+    // Delete contact
     const handleDelete = (id) => {
         axios.delete(`/contact/${id}`).then(() => {
             // return to home page if successful
@@ -43,7 +45,6 @@ const Contacts = () => {
             return null
         }
     }, [loaded, contacts]);
-
 
     contacts.sort(sortAlpabetically);
 
