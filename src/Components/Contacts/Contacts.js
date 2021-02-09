@@ -23,6 +23,15 @@ const Contacts = () => {
         return newDate;
     }
 
+    const handleDelete = (id) => {
+        axios.delete(`/contact/${id}`).then(() => {
+            // return to home page if successful
+            axios.get("contact").then(({ data }) => {
+                setContacts(data);
+            });
+        });
+    };
+
     // on render
     useEffect(() => {
         if (!loaded) {
@@ -56,7 +65,7 @@ const Contacts = () => {
                                     <Link className="btn btn-warning" to={`/edit/${contact.id}`}>Edit</Link>
                                 </div>
                                 <div className="col-md-1">
-                                    <button className="btn btn-danger">Delete</button>
+                                    <button className="btn btn-danger" onClick={() => handleDelete(contact.id)}>Delete</button>
                                 </div>
                             </div>
                         </div>
