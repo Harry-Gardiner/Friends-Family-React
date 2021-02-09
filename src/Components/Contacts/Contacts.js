@@ -27,7 +27,7 @@ const Contacts = () => {
     // Delete contact
     const handleDelete = (id) => {
         axios.delete(`/contact/${id}`).then(() => {
-            // return to home page if successful
+            // refresh contact list on success
             axios.get("contact").then(({ data }) => {
                 setContacts(data);
             });
