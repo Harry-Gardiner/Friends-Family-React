@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../data/axios-config';
+import { Link } from 'react-router-dom';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -15,6 +16,21 @@ const Contacts = () => {
         }
         return 0;
     }
+
+    const setUkDate = (string) => {
+        let split = string.split('-');
+        let newDate = `${split[2]}/${split[1]}/${split[0]}`;
+        return newDate;
+    }
+
+    const handleDelete = (id) => {
+        axios.delete(`/contact/${id}`).then(() => {
+            // return to home page if successful
+            axios.get("contact").then(({ data }) => {
+                setContacts(data);
+            });
+        });
+    };
 
     // on render
     useEffect(() => {
@@ -38,13 +54,19 @@ const Contacts = () => {
                     <div className="card m-4" key={contact.full_name}>
                         <div className="card-body">
                             <div className="row lineHeight">
-                                <div className="col-md-2">
+                                <div className="col-md-1">
                                     <div className="firstLetter">{contact.full_name[0]}</div>
                                 </div>
                                 <div className="col-md-2">{contact.full_name}</div>
-                                <div className="col-md-4">{contact.email}</div>
+                                <div className="col-md-2">{contact.email}</div>
                                 <div className="col-md-2">{contact.phone}</div>
-                                <div className="col-md-2">{contact.date_of_birth}</div>
+                                <div className="col-md-2">{setUkDate(contact.date_of_birth)}</div>
+                                <div className="col-md-1">
+                                    <Link className="btn btn-warning" to={`/edit/${contact.id}`}>Edit</Link>
+                                </div>
+                                <div className="col-md-1">
+                                    <button className="btn btn-danger" onClick={() => handleDelete(contact.id)}>Delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>
