@@ -1,6 +1,9 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const Navbar = () => {
+
+
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <a className="navbar-brand ml-5" href="/">Home</a>
@@ -9,11 +12,11 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="/">Contacts <span className="sr-only">(current)</span></a>
+                    <li className="nav-item">
+                        <Link to="/" activeClassName="active" className="nav-item nav-link">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/addContacts">Add Contact</a>
+                        <Link to="/addContacts" activeClassName="active" className="nav-item nav-link">Add Contact</Link>
                     </li>
                 </ul>
             </div>
