@@ -29,9 +29,13 @@ const Contacts = () => {
         const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
         const firstDate = new Date(currentYear, birthdayArray[1] - 1, birthdayArray[0], 12, 0, 0, 0);
         const secondDate = new Date(); // todays date
-        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-        // console.log(firstDate, "to", secondDate, "\nDifference: " + diffDays + " day");
-        return `${diffDays} days until Birthday`;
+        const diffDays = Math.round((firstDate.getTime() - secondDate.getTime()) / (oneDay));
+        // check days is a - number
+        if (diffDays > 0 && diffDays < 20) {
+            return (<div className="alert alert-warning text-center">{`${diffDays} Days Until Birthday!`}</div>);
+        } else if (diffDays === 0) {
+            return (<div className="alert alert-success text-center">Happy Birtday!</div>);
+        }
     }
 
     // Delete contact
@@ -79,7 +83,7 @@ const Contacts = () => {
                                     <button className="btn btn-danger" onClick={() => handleDelete(contact.id)}>Delete</button>
                                 </div>
                             </div>
-                            <div>{daysTillBirthday(setUkDate(contact.date_of_birth))}</div>
+                            {daysTillBirthday(setUkDate(contact.date_of_birth))}
                         </div>
                     </div>
                 ))}
