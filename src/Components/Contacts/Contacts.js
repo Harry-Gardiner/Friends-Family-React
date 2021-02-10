@@ -32,9 +32,9 @@ const Contacts = () => {
         const diffDays = Math.round((firstDate.getTime() - secondDate.getTime()) / (oneDay));
         // check days is a - number
         if (diffDays > 0 && diffDays < 20) {
-            return (<div className="alert alert-warning text-center">{`${diffDays} Days Until Birthday!`}</div>);
+            return (<div className="alert alert-warning text-center m-3">{`${diffDays} Days Until Birthday!`}</div>);
         } else if (diffDays === 0) {
-            return (<div className="alert alert-success text-center">Happy Birtday!</div>);
+            return (<div className="alert alert-success text-center m-3">Happy Birtday!</div>);
         }
     }
 
